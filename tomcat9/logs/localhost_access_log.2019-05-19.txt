@@ -1,0 +1,8 @@
+37.139.6.161 - - [19/May/2019:07:04:42 +0000] "GET / HTTP/1.1" 200 11204
+47.98.102.27 - - [19/May/2019:12:32:05 +0000] "GET / HTTP/1.1" 200 11204
+186.145.19.229 - - [19/May/2019:13:05:28 +0000] "POST /career_advisor/form_estudiante.xhtml;jsessionid=C1F668108815D161E2AB54CD225B4E5E HTTP/1.1" 200 12015
+186.145.19.229 - - [19/May/2019:13:05:29 +0000] "GET /career_advisor/javax.faces.resource/jsf.js.xhtml;jsessionid=0EDD4B976D7317E8EA7B90B5F9D55947?ln=javax.faces HTTP/1.1" 200 120656
+186.145.19.229 - - [19/May/2019:13:05:32 +0000] "POST /career_advisor/form_recomendaciones.xhtml;jsessionid=0EDD4B976D7317E8EA7B90B5F9D55947 HTTP/1.1" 200 18596
+186.145.19.229 - - [19/May/2019:13:05:32 +0000] "GET /career_advisor/info.png HTTP/1.1" 200 675
+185.39.199.9 - - [19/May/2019:15:22:04 +0000] "GET / HTTP/1.1" 200 11204
+185.39.199.9 - - [19/May/2019:15:22:07 +0000] "GET /HNAP1/ HTTP/1.1" 404 1084

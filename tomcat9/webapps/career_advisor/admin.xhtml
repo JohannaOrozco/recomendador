@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<head>
+<title>Admin</title>
+</head>
+<body>
+	<f:view>
+		<h:form id="inputForm">
+
+			<t:outputText value="Administrador del sistema"
+				style="font-weight:bold; text-decoration:underline; text-align:center" />
+			<br />
+			<br />
+
+			<hr />
+			<h:panelGrid columns="2">
+				
+				<t:selectBooleanCheckbox id="mockMode" 
+				value ="#{inputDataBean.adminData.mockMode}"/>
+				<t:outputText value="Run in mock mode"/>
+			</h:panelGrid>
+ 			<hr />
+
+			<t:commandButton value="Aceptar" action="#{inputDataBean.adminDataAction}" />
+			<t:commandButton value="Ir a Recomendaciones" action="#{inputDataBean.okAction}" />
+			<br />
+			<br />
+
+
+		</h:form>
+	</f:view>
+</body>
+
+</html>

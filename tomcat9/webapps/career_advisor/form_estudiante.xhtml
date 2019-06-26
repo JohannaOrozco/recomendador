@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<head>
+<title>Recomendar carreras</title>
+</head>
+<body>
+	<f:view>
+		<h:form id="inputForm">
+
+			<t:outputText value="PROTOTIPO PARA RECOMENDAR PROGRAMAS ACADÉMICOS"
+				style="font-weight:bold;  text-align:center" />
+			<br />
+			<br />
+			<h:panelGrid style="border:1px solid">
+			<h:outputText value="Advertencia:"/>
+			<br/>
+			<h:outputText value = "Los datos solicitados no serán almacenados o divulgados para respetar y garantizar la privacidad de los usuarios del sistema, serán usados solo para calcular las predicciones. Entre más precisa sea la información suministrada se generarán mejores recomendaciones."/>
+			</h:panelGrid>
+			<br />
+			<br />
+			
+			<hr />
+
+
+			<t:outputText value="Datos del Estudiante"
+				style="font-weight:bold; text-decoration:underline" />
+			<br />
+			<br />
+			
+
+			<h:panelGrid columns="3">
+			<!-- 
+				<t:outputLabel for="nombrecompleto" value="Nombre Completo:" />
+				<t:inputText id="nombrecompleto"
+					value="#{inputDataBean.data.estudianteNombreCompleto}"
+					 />
+				<t:message for="nombrecompleto" errorStyle="color:red" />
+ 
+				<t:outputLabel for="email" value="Correo Electrónico:" />
+				<t:inputText id="email"
+					value="#{inputDataBean.data.estudianteEmail}" >
+					<t:validateEmail
+						message="Dirección de correo no válida"
+						errorStyle="color:red" />
+				</t:inputText>
+				<t:message for="email" errorStyle="color:red" />
+			 -->
+
+				<t:outputLabel for="nacionalidadEstudiante" value="Nacionalidad:" />
+				<t:selectOneRadio id="nacionalidadEstudiante"
+					value="#{inputDataBean.data.estudianteNacionalidad}"
+					>
+					<f:selectItem itemValue="CO" itemLabel="Colombiano" />
+					<f:selectItem itemValue="EX" itemLabel="Extranjero" />
+				</t:selectOneRadio>
+				<t:message for="nacionalidadEstudiante" errorStyle="color:red" />
+
+				<t:outputLabel for="edadEstudiante" value="Edad:" />
+				<t:inputText id="edadEstudiante"
+					value="#{inputDataBean.data.estudianteEdad}" >
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="edadEstudiante" errorStyle="color:red" />
+
+				<t:outputLabel for="generoEstudiante" value="Género:" />
+				<t:selectOneRadio id="generoEstudiante"
+					value="#{inputDataBean.data.estudianteGenero}" >
+					<f:selectItem itemValue="M" itemLabel="Masculino" />
+					<f:selectItem itemValue="F" itemLabel="Femenino" />
+					<f:selectItem itemValue="N" itemLabel="Otro" />
+				</t:selectOneRadio>
+				<t:message for="generoEstudiante" errorStyle="color:red" />
+
+				<t:outputLabel for="estadoCivilEstudiante" value="Estado civil:" />
+				<t:selectOneMenu id="estadoCivilEstudiante"
+					value="#{inputDataBean.data.estudianteEstadoCivil}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un estado civil" />
+					<f:selectItem itemValue="CASADO" itemLabel="CASADO" />
+					<f:selectItem itemValue="DIVORCIADO" itemLabel="DIVORCIADO" />
+					<f:selectItem itemValue="SEPARADO" itemLabel="SEPARADO" />
+					<f:selectItem itemValue="SOLTERO" itemLabel="SOLTERO" />
+					<f:selectItem itemValue="UNION LIBRE" itemLabel="UNION LIBRE" />
+					<f:selectItem itemValue="VIUDO" itemLabel="VIUDO" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="estadoCivilEstudiante" errorStyle="color:red" />
+
+				<t:outputLabel for="estratoEstudiante" value="Estrato:" />
+				<t:selectOneMenu id="estratoEstudiante"
+					value="#{inputDataBean.data.estudianteEstrato}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un estrato" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+					<f:selectItem itemValue="5" itemLabel="5" />
+					<f:selectItem itemValue="6" itemLabel="6" />
+				</t:selectOneMenu>
+				<t:message for="estratoEstudiante" errorStyle="color:red" />
+
+				<t:outputLabel for="estudianteTieneFinaciacion"
+					value="Tiene finaciación para sus estudios:" />
+				<t:selectOneRadio id="estudianteTieneFinaciacion"
+					value="#{inputDataBean.data.estudianteTieneFinanciacion}"
+					>
+					<f:selectItem itemValue="SI" itemLabel="Si" />
+					<f:selectItem itemValue="NO" itemLabel="No" />
+				</t:selectOneRadio>
+				<t:message for="estudianteTieneFinaciacion" errorStyle="color:red" />
+
+				<h:panelGroup>
+					<t:outputLabel for="fueAlmismoColegio"
+						value="Fue Siempre al Mismo Colegio:"
+						title="Fue Al Mismo Colegio Durante Todo Su Época Escolar" />
+					<h:graphicImage value="/info.png"
+						title="Fue Al Mismo Colegio Durante Todo Su Época Escolar"
+						alt="Fue Al Mismo Colegio Durante Todo Su Época Escolar"
+						width="20" height="20" />
+				</h:panelGroup>
+				<t:selectOneRadio id="fueAlmismoColegio"
+					value="#{inputDataBean.data.colegioFueElMismo}" 
+					title="Fue Al Mismo Colegio Durante Todo Su Época Escolar">
+					<f:selectItem itemValue="SI" itemLabel="Si" />
+					<f:selectItem itemValue="NO" itemLabel="No" />
+				</t:selectOneRadio>
+				<t:message for="fueAlmismoColegio" errorStyle="color:red" />
+
+
+				<t:outputLabel for="estudiantePerteneceMinoriaEtnica"
+					value="Pertenece a una minoría étnica:" />
+				<t:selectOneRadio id="estudiantePerteneceMinoriaEtnica"
+					value="#{inputDataBean.data.estudiantePerteneceMinoriaEtnica}"
+					>
+					<f:selectItem itemValue="SI" itemLabel="Si" />
+					<f:selectItem itemValue="NO" itemLabel="No" />
+				</t:selectOneRadio>
+				<t:message for="estudiantePerteneceMinoriaEtnica"
+					errorStyle="color:red" />
+
+				<t:outputLabel for="estudianteTieneDiscapacidad"
+					value="Tiene discapacidad física:" />
+				<t:selectOneRadio id="estudianteTieneDiscapacidad"
+					value="#{inputDataBean.data.estudianteTieneDiscapacidad}"
+					>
+					<f:selectItem itemValue="SI" itemLabel="Si" />
+					<f:selectItem itemValue="NO" itemLabel="No" />
+				</t:selectOneRadio>
+				<t:message for="estudianteTieneDiscapacidad" errorStyle="color:red" />
+
+			</h:panelGrid>
+		 
+			<br />
+			<hr />
+			<t:outputText value="Datos del examen del icfes 'saber 11':"
+				style="font-weight:bold; text-decoration:underline" />
+			<br />
+			<br />
+			
+			<h:panelGrid columns="3">
+			
+			<t:outputLabel for="anoPresentacionIcfes" value="Año en que presentó el examen:" />
+				<t:selectOneMenu id="anoPresentacionIcfes"
+					value="#{inputDataBean.data.icfesAnoPresentacion}" >
+					<t:selectItems value="#{inputDataBean.anosPresentacionIcfes}" var="ano"
+						itemValue="#{ano.key}" itemLabel="#{ano.value}" />
+				</t:selectOneMenu>
+				<t:message for="anoPresentacionIcfes" errorStyle="color:red" />
+				
+			<t:outputLabel for="periodoPresentacion" value="Periodo en que presentó el examen:" />
+				<t:selectOneMenu id="periodoPresentacion"
+					value="#{inputDataBean.data.icfesPeriodoPresentacion}"
+					>
+					<f:selectItem itemValue="" itemLabel="Seleccione un periodo" />
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+				</t:selectOneMenu>
+				<t:message for="periodoPresentacion" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeGlobalIcfes" value="Puntaje Global:"
+					title="Puntaje Global en el Exámen Saber 11:" />
+				<t:inputText id="puntajeGlobalIcfes"
+					value="#{inputDataBean.data.icfesPuntajeGlobal}" 
+					title="Puntaje Global en el Exámen Saber 11">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeGlobalIcfes" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeSocialesYCiudadanas" value="Puntaje en Sociales Ciudadanas:"/>
+				<t:inputText id="puntajeSocialesYCiudadanas"
+					value="#{inputDataBean.data.icfesPuntajeSocialesYCiudadanas}">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeSocialesYCiudadanas" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeLecturaCritica" value="Puntaje en Lectura Crítica:"/>
+				<t:inputText id="puntajeLecturaCritica"
+					value="#{inputDataBean.data.icfesPuntajeLecturaCritica}">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeLecturaCritica" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeMatematicas" value="Puntaje en Matemáticas:"/>
+				<t:inputText id="puntajeMatematicas"
+					value="#{inputDataBean.data.icfesPuntajeMatematicas}">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeMatematicas" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeCienciasNaturales" value="Puntaje en Ciencias Naturales:"/>
+				<t:inputText id="puntajeCienciasNaturales"
+					value="#{inputDataBean.data.icfesPuntajeCienciasNaturales}">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeCienciasNaturales" errorStyle="color:red" />
+				
+				<t:outputLabel for="puntajeIngles" value="Puntaje en Inglés:"/>
+				<t:inputText id="puntajeIngles"
+					value="#{inputDataBean.data.icfesPuntajeIngles}">
+					<f:convertNumber integerOnly="true" />
+				</t:inputText>
+				<t:message for="puntajeIngles" errorStyle="color:red" />
+			</h:panelGrid>
+			<br/>
+			<hr />
+			<t:outputText value="Datos del Colegio"
+				style="font-weight:bold; text-decoration:underline" />
+			<br />
+			<br />
+
+			<h:panelGrid columns="3">
+				<t:outputLabel for="departamentoColegio" value="Departamento:" />
+				<t:selectOneMenu id="departamentoColegio"
+					value="#{inputDataBean.data.colegioDepartamento}" >
+					<t:selectItems value="#{inputDataBean.departamentos}" var="dpto"
+						itemValue="#{dpto.key}" itemLabel="#{dpto.value}" />
+				</t:selectOneMenu>
+				<t:message for="departamentoColegio" errorStyle="color:red" />
+
+
+				<t:outputLabel for="sectorColegio" value="Sector:" />
+				<t:selectOneRadio id="sectorColegio"
+					value="#{inputDataBean.data.colegioSector}" >
+					<f:selectItem itemValue="NO OFICIAL" itemLabel="NO OFICIAL" />
+					<f:selectItem itemValue="OFICIAL" itemLabel="OFICIAL" />
+				</t:selectOneRadio>
+				<t:message for="sectorColegio" errorStyle="color:red" />
+
+				<t:outputLabel for="zonaColegio" value="Zona:" />
+				<t:selectOneMenu id="zonaColegio"
+					value="#{inputDataBean.data.colegioZona}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione una zona" />
+					<f:selectItem itemValue="RURAL" itemLabel="RURAL" />
+					<f:selectItem itemValue="RURAL-URBANA" itemLabel="RURAL-URBANA" />
+					<f:selectItem itemValue="URBANA" itemLabel="URBANA" />
+					<f:selectItem itemValue="URBANA-RURAL" itemLabel="URBANA-RURAL" />
+				</t:selectOneMenu>
+				<t:message for="zonaColegio" errorStyle="color:red" />
+
+				<t:outputLabel for="generoColegio" value="Género:" />
+				<t:selectOneMenu id="generoColegio"
+					value="#{inputDataBean.data.colegioGenero}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un género" />
+					<f:selectItem itemValue="FEMENINO" itemLabel="FEMENINO" />
+					<f:selectItem itemValue="MASCULINO" itemLabel="MASCULINO" />
+					<f:selectItem itemValue="MIXTO" itemLabel="MIXTO" />
+				</t:selectOneMenu>
+				<t:message for="generoColegio" errorStyle="color:red" />
+
+				<t:outputLabel for="caracterColegio" value="Carácter:" />
+				<t:selectOneMenu id="caracterColegio"
+					value="#{inputDataBean.data.colegioCaracter}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un carácter" />
+					<f:selectItem itemValue="TECNICO" itemLabel="TÉCNICO" />
+					<f:selectItem itemValue="ACADEMICO" itemLabel="ACADÉMICO" />
+					<f:selectItem itemValue="TECNICO/ACADEMICO"
+						itemLabel="TECNICO/ACADEMICO" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="caracterColegio" errorStyle="color:red" />
+
+				<t:outputLabel for="calendarioColegio" value="Calendario:" />
+				<t:selectOneMenu id="calendarioColegio"
+					value="#{inputDataBean.data.colegioCalendario}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un calendario" />
+					<f:selectItem itemValue="A" itemLabel="A" />
+					<f:selectItem itemValue="B" itemLabel="B" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="calendarioColegio" errorStyle="color:red" />
+				
+				<t:outputLabel for="clasificacionColegio" value="Clasificación" />
+				<t:selectOneMenu id="clasificacionColegio"
+					value="#{inputDataBean.data.colegioClasificacion}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione una clasificación" />
+					<f:selectItem itemValue="A" itemLabel="A" />
+					<f:selectItem itemValue="A+" itemLabel="A+" />
+					<f:selectItem itemValue="B" itemLabel="B" />
+					<f:selectItem itemValue="C" itemLabel="C" />
+					<f:selectItem itemValue="D" itemLabel="D" />
+				</t:selectOneMenu>
+				<t:message for="clasificacionColegio" errorStyle="color:red" />
+			</h:panelGrid>
+			<br />
+			<br />
+			 
+			<hr />
+			<t:outputText value="Datos de los Padres"
+				style="font-weight:bold; text-decoration:underline" />
+			<br />
+			<br />
+			<h:panelGrid columns="3">
+				<t:outputLabel for="estadoCivilPadres"
+					value="Estado civil de los padres:" />
+				<t:selectOneMenu id="estadoCivilPadres"
+					value="#{inputDataBean.data.padresEstadoCivil}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione un estado civil" />
+					<f:selectItem itemValue="CASADOS" itemLabel="CASADOS" />
+					<f:selectItem itemValue="DIVORCIADOS" itemLabel="DIVORCIADOS" />
+					<f:selectItem itemValue="SEPARADOS" itemLabel="SEPARADOS" />
+					<f:selectItem itemValue="SOLTEROS" itemLabel="SOLTEROS" />
+					<f:selectItem itemValue="UNION LIBRE" itemLabel="UNION LIBRE" />
+					<f:selectItem itemValue="VIUDOS" itemLabel="VIUDOS" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="estadoCivilPadres" errorStyle="color:red" />
+
+				<t:outputLabel for="nivelEducativoMadre"
+					value="Nivel educativo de la madre:" />
+				<t:selectOneMenu id="nivelEducativoMadre"
+					value="#{inputDataBean.data.madreNivelEducativo}" >
+					<f:selectItem itemValue=""
+						itemLabel="Seleccione un nivel educativo" />
+					<f:selectItem itemValue="PRIMARIA" itemLabel="PRIMARIA" />
+					<f:selectItem itemValue="BACHILLERATO" itemLabel="BACHILLERATO" />
+					<f:selectItem itemValue="TECNICO" itemLabel="TECNICO" />
+					<f:selectItem itemValue="PROFESIONAL" itemLabel="PROFESIONAL" />
+					<f:selectItem itemValue="POSTGRADO" itemLabel="POSTGRADO" />
+				</t:selectOneMenu>
+				<t:message for="nivelEducativoMadre" errorStyle="color:red" />
+
+				<t:outputLabel for="nivelEducativoPadre"
+					value="Nivel educativo del padre:" />
+				<t:selectOneMenu id="nivelEducativoPadre"
+					value="#{inputDataBean.data.padreNivelEducativo}" >
+					<f:selectItem itemValue=""
+						itemLabel="Seleccione un nivel educativo" />
+					<f:selectItem itemValue="PRIMARIA" itemLabel="PRIMARIA" />
+					<f:selectItem itemValue="BACHILLERATO" itemLabel="BACHILLERATO" />
+					<f:selectItem itemValue="TECNICO" itemLabel="TECNICO" />
+					<f:selectItem itemValue="PROFESIONAL" itemLabel="PROFESIONAL" />
+					<f:selectItem itemValue="POSTGRADO" itemLabel="POSTGRADO" />
+				</t:selectOneMenu>
+				<t:message for="nivelEducativoPadre" errorStyle="color:red" />
+
+				<t:outputLabel for="ocupacionMadre" value="Ocupación de la madre:" />
+				<t:selectOneMenu id="ocupacionMadre"
+					value="#{inputDataBean.data.madreOcupacion}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione una ocupación" />
+					<f:selectItem itemValue="DESEMPLEADA" itemLabel="DESEMPLEADA" />
+					<f:selectItem itemValue="EMPLEADA" itemLabel="EMPLEADA" />
+					<f:selectItem itemValue="EMPRESARIA" itemLabel="EMPRESARIA" />
+					<f:selectItem itemValue="INDEPENDIENTE" itemLabel="INDEPENDIENTE" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="ocupacionMadre" errorStyle="color:red" />
+
+				<t:outputLabel for="ocupacionPadre" value="Ocupación del padre:" />
+				<t:selectOneMenu id="ocupacionPadre"
+					value="#{inputDataBean.data.padreOcupacion}" >
+					<f:selectItem itemValue="" itemLabel="Seleccione una ocupación" />
+					<f:selectItem itemValue="DESEMPLEADO" itemLabel="DESEMPLEADO" />
+					<f:selectItem itemValue="EMPLEADO" itemLabel="EMPLEADO" />
+					<f:selectItem itemValue="EMPRESARIO" itemLabel="EMPRESARIO" />
+					<f:selectItem itemValue="INDEPENDIENTE" itemLabel="INDEPENDIENTE" />
+					<f:selectItem itemValue="OTRO" itemLabel="OTRO" />
+				</t:selectOneMenu>
+				<t:message for="ocupacionPadre" errorStyle="color:red" />
+			</h:panelGrid>
+
+			<hr />
+
+			<t:commandButton value="Aceptar" action="#{inputDataBean.okAction}" />
+			<br />
+			<br />
+
+
+		</h:form>
+	</f:view>
+</body>
+<!-- 
+<t:outputLabel for="departamentoColegio" value="Departamento:" />
+<t:selectOneMenu id="departamentoColegio"
+	value="#{inputDataBean.data.colegioDepartamento}" >
+	<t:selectItems value="#{inputDataBean.departamentos}" var="dpto"
+		itemValue="#{dpto.key}" itemLabel="#{dpto.value}" />
+
+	<f:ajax event="change" render="municipioColegio"
+		listener="#{inputDataBean.deptartamentoChanged}" />
+
+</t:selectOneMenu>
+<t:message for="departamentoColegio" errorStyle="color:red" />
+
+<t:outputLabel for="municipioColegio" value="Municipio:" />
+<t:selectOneMenu id="municipioColegio"
+	value="#{inputDataBean.data.colegioMunicipio}" >
+	<t:selectItems value="#{inputDataBean.municipios}" var="mpio"
+		itemValue="#{mpio.key}" itemLabel="#{mpio.value}" />
+</t:selectOneMenu>
+<t:message for="municipioColegio" errorStyle="color:red" />
+<br />
+ -->
+
+</html>

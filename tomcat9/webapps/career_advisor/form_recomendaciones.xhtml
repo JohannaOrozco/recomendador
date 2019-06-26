@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:head>
+	<t:stylesheet path="styles.css" />
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load("current", {
+			packages : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			
+			var data = #{inputDataBean.histogramDataForJavaScript}
+
+			var view = new google.visualization.DataView(data);
+			view.setColumns([ 0, 1, {
+				calc : "stringify",
+				sourceColumn : 1,
+				type : "string",
+				role : "annotation"
+			}, 2 ]);
+
+			var options = {
+				title : "Cantidad de estudiantes por programa",
+				width : 600,
+				height : 400,
+				bar : {
+					groupWidth : "95%"
+				},
+				legend : {
+					position : "none"
+				},
+			};
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById("columnchart_values"));
+			chart.draw(view, options);
+		}
+	</script>
+</h:head>
+<h:body>
+
+	<f:view>
+		<h:form id="outputForm">
+
+			<t:outputText value="RECOMENDACIONES"
+				style="font-weight:bold;  text-align:center" />
+			<br />
+			<br />
+
+
+			<!-- 
+			<h:panelGrid columns="2">
+				<t:outputLabel for="nombreEstudiante" value="Nombre:" />
+				<t:outputText id="nombreEstudiante"
+					value="#{inputDataBean.data.estudianteNombreCompleto}" />
+				<t:outputLabel for="emailEstudiante" value="Email:" />
+				<t:outputText id="emailEstudiante"
+					value="#{inputDataBean.data.estudianteEmail}" />
+			</h:panelGrid>
+
+			<br />
+			 -->
+			<hr />
+			<t:outputText value="Le recomendamos los siguientes programas académicos, porque hay estudiantes que tienen características similares a las ingresadas por usted y que han tenido un buen desempeño en dichos programas."
+			  />
+			<br />
+			<br />
+			
+			<div style="width: 95%; height: 380px;align: center;">
+				<div id="columnchart_values" style="width: 900px; height: 300px;align: center;"></div>
+			</div>
+			<br />
+			<br />
+			<h:panelGrid style="border:1px solid" width="100%">
+				<t:dataTable id="recommendedPrograms" width="100%"
+					styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row"
+					rendered="#{not empty inputDataBean.recommendedPrograms}"
+					value="#{inputDataBean.recommendedPrograms}" var="program">
+
+					<t:column width="25%">
+						<f:facet name="header">
+							<h:outputText value="Nombre" />
+						</f:facet>
+						<t:outputText value="#{program.displayName}" />
+					</t:column>
+					<t:column width="5%">
+						<f:facet name="header">
+							<h:outputText value="Modalidad" />
+						</f:facet>
+						<t:outputText value="#{program.programData.modalidad}" />
+					</t:column>
+					<t:column width="10%">
+						<f:facet name="header">
+							<h:outputText value="Tipo de Formación" />
+						</f:facet>
+						<t:outputText value="#{program.programData.tipoDeFormacion}" />
+					</t:column>
+					<t:column width="25%">
+						<f:facet name="header">
+							<h:outputText value="Título Otorgado" />
+						</f:facet>
+						<t:outputText value="#{program.programData.tituloOtorgado}" />
+					</t:column>
+					<t:column width="10%">
+						<f:facet name="header">
+							<h:outputText value="Duración" />
+						</f:facet>
+						<t:outputText value="#{program.programData.duracion}" />
+					</t:column>
+					<t:column width="5">
+						<f:facet name="header">
+							<h:outputText value="URL" />
+						</f:facet>
+						<h:outputLink value="#{program.programData.urlAndes}"
+							target="_blank">
+							<t:outputText value="Ir" />
+						</h:outputLink>
+					</t:column>
+					<t:column width="20%" style="text-align:left;">
+						<f:facet name="header">
+							<h:outputText value="Conceptos" />
+						</f:facet>
+						<t:selectManyCheckbox id="concepts" layout="pageDirection"
+							value="#{program.selectedConcepts}">
+							<t:selectItems value="#{program.programData.conceptos}"
+								var="concept" itemValue="#{concept.key}"
+								itemLabel="#{concept.value}" />
+							<f:ajax event="valueChange" />
+						</t:selectManyCheckbox>
+					</t:column>
+					<!-- 
+				<t:column width="10%">
+					<f:facet name="header">
+						<h:outputText value="Acción" />
+					</f:facet>
+					
+					<t:commandLink
+						actionListener="#{inputDataBean.selectedProgramListener}"
+						value="Ver Conceptos">
+						<f:param name="selectedProgram" id="selectedProgram"
+							value="#{program.name}" />
+						<f:ajax render="conceptsPanel otherProgramsPanel" />
+					</t:commandLink>
+				</t:column>
+				-->
+				</t:dataTable>
+			</h:panelGrid>
+
+			<br />
+			<t:messages id="errorMsgs" errorStyle="color:red" />
+			<t:outputText value="Para descubrir otros programas académicos que pueden ser de su interés, seleccione algunos conceptos con los que se siente identificado y luego haga click en el botón “Enviar”." />
+			<br/>
+			<t:commandButton id="sendConceptsButton" value="Enviar"
+				action="#{inputDataBean.getOtherProgramsAction}">
+				<!-- <f:ajax render="otherProgramsPane errorMsgs" />-->
+			</t:commandButton>
+			<br />
+			<br />
+			<t:panelGroup id="otherProgramsPanel" rendered="#{not empty inputDataBean.otherPrograms}">
+				<hr />
+
+				<t:outputText value="Estos son otros programas que le pueden interesar de acuerdo a los conceptos seleccionados: "
+					 /><!-- style="font-weight:bold;" -->
+				<br />
+				<br />
+				<h:panelGrid style="border:1px solid" width="100%">
+					<t:dataTable id="otherPrograms" width="100%"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"						
+						value="#{inputDataBean.otherPrograms}" var="program">
+
+						<t:column width="30%">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<t:outputText value="#{program.displayName}" />
+						</t:column>
+						<t:column width="10%">
+							<f:facet name="header">
+								<h:outputText value="Modalidad" />
+							</f:facet>
+							<t:outputText value="#{program.programData.modalidad}" />
+						</t:column>
+						<t:column width="10%">
+							<f:facet name="header">
+								<h:outputText value="Tipo de Formación" />
+							</f:facet>
+							<t:outputText value="#{program.programData.tipoDeFormacion}" />
+						</t:column>
+						<t:column width="30%">
+							<f:facet name="header">
+								<h:outputText value="Título Otorgado" />
+							</f:facet>
+							<t:outputText value="#{program.programData.tituloOtorgado}" />
+						</t:column>
+						<t:column width="10%">
+							<f:facet name="header">
+								<h:outputText value="Duración" />
+							</f:facet>
+							<t:outputText value="#{program.programData.duracion}" />
+						</t:column>
+						<t:column width="10">
+							<f:facet name="header">
+								<h:outputText value="URL" />
+							</f:facet>
+							<h:outputLink value="#{program.programData.urlAndes}"
+								target="_blank">
+								<t:outputText value="Ir" />
+							</h:outputLink>
+						</t:column>
+
+					</t:dataTable>
+				</h:panelGrid>
+				<br />
+				<br />
+			</t:panelGroup>
+			
+			<t:panelGroup id="otherProgramsNotFoundPanel" rendered="#{inputDataBean.showOtherProgramsNotFound}">
+				<hr />
+
+				<t:outputText value="No se encontraron otros programas que le pudieran interesar. Por favor realice cambios a la selección de sus conceptos y pruebe de nuevo."
+					 style="color:red;"/>
+				<br />
+				</t:panelGroup>
+
+			<hr />
+			<h:commandButton value="Volver" action="form_estudiante" />
+		</h:form>
+	</f:view>
+</h:body>
+</html>

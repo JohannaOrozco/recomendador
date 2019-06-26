@@ -1,0 +1,9 @@
+196.52.43.58 - - [22/May/2019:05:44:58 +0000] "GET / HTTP/1.0" 200 11184
+122.228.19.80 - - [22/May/2019:09:29:43 +0000] "GET / HTTP/1.1" 200 11204
+89.248.169.12 - - [22/May/2019:12:52:48 +0000] "GET / HTTP/1.1" 200 11204
+194.32.117.3 - - [22/May/2019:13:57:23 +0000] "GET / HTTP/1.1" 400 1127
+139.162.79.87 - - [22/May/2019:20:31:10 +0000] "GET / HTTP/1.1" 200 11204
+200.3.152.21 - - [22/May/2019:21:03:19 +0000] "GET /career_advisor/form_estudiante.xhtml HTTP/1.1" 200 18648
+200.3.152.21 - - [22/May/2019:21:03:20 +0000] "GET /career_advisor/info.png;jsessionid=FA272EBD1CCB9130B4C94DDFC2C4529A HTTP/1.1" 200 675
+200.3.152.21 - - [22/May/2019:21:03:20 +0000] "GET /career_advisor/javax.faces.resource/oamSubmit.js.xhtml?ln=org.apache.myfaces HTTP/1.1" 200 1874
+200.3.152.21 - - [22/May/2019:21:03:20 +0000] "GET /favicon.ico HTTP/1.1" 200 21630

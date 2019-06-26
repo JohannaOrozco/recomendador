@@ -1,0 +1,1 @@
+19-May-2019 13:05:28.886 WARNING [http-nio-8080-exec-6] org.apache.myfaces.shared.context.flash.FlashImpl._manageFlashMapTokens Identifier for execute FlashMap was lost on the postback, thus FlashScope information is gone.
